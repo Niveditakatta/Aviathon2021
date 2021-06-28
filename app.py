@@ -233,4 +233,4 @@ def render_content(tab):
 
 if __name__ == '__main__':
     #app.run_server(debug=True,use_reloader=False)
-    dash_app.run_server(debug=False,port=80)
+    dash_app.run_server(debug=False)
