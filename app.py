@@ -9,8 +9,6 @@ from datetime import datetime
 import dash_table
 import pandas as pd
 import dash_bootstrap_components as dbc
-from jupyter_dash import JupyterDash
-#from flask_caching import Cache
 import plotly.express as px
 import pandas as pd
 import plotly.graph_objects as go
