@@ -13,16 +13,27 @@ import plotly.express as px
 import pandas as pd
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
+import requests
+import io
 
 _app_route = '/'
 dash_app = dash.Dash(external_stylesheets=[dbc.themes.SLATE])
 app = dash_app.server
 
-df_delay=pd.read_csv('July2019_DepDelay.csv')
+url1='https://testmlworkspac4198010180.blob.core.windows.net/azureml-blobstore-e0d9f6c7-2866-43ee-8efb-38ea91709e86/delaypred_July312019.csv?sp=r&st=2021-06-28T07:19:00Z&se=2021-07-01T15:19:00Z&spr=https&sv=2020-02-10&sr=b&sig=PPdY%2BJEMCqCaBPEkWAeALFQQAub1DIN8OpSUUsyPads%3D'
+url='https://testmlworkspac4198010180.blob.core.windows.net/azureml-blobstore-e0d9f6c7-2866-43ee-8efb-38ea91709e86/July2019_DepDelay.csv?sp=r&st=2021-06-28T07:18:20Z&se=2021-07-01T15:18:20Z&spr=https&sv=2020-02-10&sr=b&sig=ma17wo1hDYMXMmBFX9KaSLc5doN4VLrV%2F%2FZzbNz%2FFsc%3D'
+
+s1=requests.get(url1).content
+df=pd.read_csv(io.StringIO(s1.decode('utf-8')))
+# df=pd.read_csv('delaypred_July312019.csv')
+df.loc[df['DELAY_PREDICTION']=='Small Delay(<15 mins)','DELAY_PREDICTION']='Short Delay(<15 mins)'
+
+s1=requests.get(url).content
+df_delay=pd.read_csv(io.StringIO(s1.decode('utf-8')))
+# df_delay=pd.read_csv('July2019_DepDelay.csv')
 services=df_delay['AIRLINE'].unique()
 
-df=pd.read_csv('delaypred_July312019.csv')
-df.loc[df['DELAY_PREDICTION']=='Small Delay(<15 mins)','DELAY_PREDICTION']='Short Delay(<15 mins)'
+
 
 #Controls and Styles
 tabs_styles = {'margin-left': '20%','height': '20px'}
