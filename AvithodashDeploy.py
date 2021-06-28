@@ -21,10 +21,10 @@ _app_route = '/'
 dash_app = dash.Dash(external_stylesheets=[dbc.themes.SLATE])
 app = dash_app.server
 
-df_delay=pd.read_csv('data\July2019_DepDelay.csv')
+df_delay=pd.read_csv('July2019_DepDelay.csv')
 services=df_delay['AIRLINE'].unique()
 
-df=pd.read_csv('data/delaypred_July312019.csv')
+df=pd.read_csv('delaypred_July312019.csv')
 df.loc[df['DELAY_PREDICTION']=='Small Delay(<15 mins)','DELAY_PREDICTION']='Short Delay(<15 mins)'
 
 #Controls and Styles
