@@ -4,7 +4,6 @@ import flask
 import json
 import dash_html_components as html
 import dash_core_components as dcc
-import dash_daq as daq
 from dash.dependencies import Input, Output,State
 from datetime import datetime
 import dash_table
