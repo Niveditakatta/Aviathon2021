@@ -72,7 +72,7 @@ controls = dbc.Form(
 
 Topmenu=dbc.Card(dbc.CardBody([controls]))
 # App and app layout with Tabs
-app.layout = html.Div([tabmenu])
+dash_app.layout = html.Div([tabmenu])
 
 
 @dash_app.callback(
